@@ -14,7 +14,7 @@ import io.github.nullphantom.diagnosajerawat.R;
 import io.github.nullphantom.diagnosajerawat.database.DatabaseAccess;
 
 public class Kesimpulan extends AppCompatActivity {
-
+//contoh commit
     private String id;
 
     @Override
