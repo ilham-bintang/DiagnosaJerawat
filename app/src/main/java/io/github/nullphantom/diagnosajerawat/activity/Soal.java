@@ -28,10 +28,13 @@ public class Soal extends AppCompatActivity {
         Intent i = getIntent();
         id = i.getStringExtra("kode_gejala");
 
+        //kalau kesimpulan, pindah ke activity kesimpulan
         if(id.substring(0,1).equals("K")) {
             DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
             databaseAccess.open();
+
             String nextSoal = databaseAccess.getData("kesimpulan",1, id);
+
             databaseAccess.close();
             Intent in =new Intent(getApplicationContext(),Kesimpulan.class);
             in.putExtra("kesimpulan", nextSoal);
