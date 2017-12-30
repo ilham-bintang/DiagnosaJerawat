@@ -9,50 +9,72 @@
     android:orientation="vertical"
     tools:context=".activity.MainActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="SISTEM PAKAR APA APAAN DAH"
-        android:textAlignment="center"
-        />
-
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/btn_yes"/>
+
+    <TextView
+        android:id="@+id/judul"
         android:layout_marginTop="20dp"
-        android:src="@drawable/ic_launcher_background"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Soal"
+        android:textColor="@color/orangeText2"
+        android:textAlignment="center"
+        android:textSize="35sp"
+        />
 
     <TextView
         android:id="@+id/soal"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="180dp"
         android:textAlignment="center"
+        android:textColor="@color/white"
         android:text="soal"
-        />
+        android:textSize="25sp"/>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="100dp"
-        android:gravity="center">
-        <Button
-            android:id="@+id/btnYa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ya"
-            android:onClick="ya"/>
+        android:layout_marginBottom="10dp"
+        android:gravity="bottom">
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            >
         <Button
             android:id="@+id/btnTidak"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="tidak"
-            tools:layout_editor_absoluteX="279dp"
-            tools:layout_editor_absoluteY="370dp"
-            android:onClick="tidak"/>
-    </LinearLayout>
+            android:layout_weight="50"
+            android:text="Tidak"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/button_shape_no"
+            android:layout_marginEnd="5dp" />
+        <Button
+            android:id="@+id/btnYa"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="50"
+            android:text="Ya"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/button_shape"
+            android:layout_marginStart="5dp" />
+        </LinearLayout>
+    </RelativeLayout>
 
 
 </LinearLayout>

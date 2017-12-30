@@ -14,7 +14,7 @@
         android:layout_marginTop="20dp"
         android:textAllCaps="true"
         android:textSize="30dp"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/orangeText2"
         />
 
     <TextView
@@ -23,23 +23,45 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textAlignment="center"
-        android:layout_marginTop="30dp"
-        android:textAllCaps="true"
+        android:layout_margin="20dp"
         android:textSize="20dp"
+        android:textColor="@color/white"
         />
-    <Button
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="back"
-        android:layout_marginTop="20dp"
-        android:onClick="goBack"
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="home"
-        android:layout_marginTop="20dp"
-        android:onClick="goHome"
-        />
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:gravity="bottom">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            >
+            <Button
+                android:id="@+id/btnTidak"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="back"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:background="@drawable/button_shape_no"
+                android:onClick="goBack"
+                 />
+            <Button
+                android:id="@+id/btnYa"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:text="home"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:background="@drawable/button_shape"
+                android:onClick="goHome"
+                />
+        </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

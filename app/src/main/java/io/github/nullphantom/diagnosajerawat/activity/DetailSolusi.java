@@ -1,6 +1,7 @@
 package io.github.nullphantom.diagnosajerawat.activity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,13 +25,14 @@ public class DetailSolusi extends AppCompatActivity {
         Intent i = getIntent();
         String id = i.getStringExtra("id");
         id_kes = i.getStringExtra("id_kesimpulan");
-        Log.e("idnya adalah :" , id);
 
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
             String detail_solusi = databaseAccess.getData("solusi",2, id);
         databaseAccess.close();
 
+        Typeface font = Typeface.createFromAsset(getAssets(),  "fonts/Lato-Regular.ttf");
+        detailsolusi.setTypeface(font);
         detailsolusi.setText(detail_solusi);
     }
     public void goHome(View v) {
@@ -38,6 +40,13 @@ public class DetailSolusi extends AppCompatActivity {
         startActivity(inte);
     }
     public void goBack(View v) {
+        Intent inte =new Intent(getApplicationContext(),Detail.class);
+        inte.putExtra("id", id_kes);
+        startActivity(inte);
+    }
+
+    @Override
+    public void onBackPressed() {
         Intent inte =new Intent(getApplicationContext(),Detail.class);
         inte.putExtra("id", id_kes);
         startActivity(inte);

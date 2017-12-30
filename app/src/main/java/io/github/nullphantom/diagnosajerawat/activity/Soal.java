@@ -1,6 +1,7 @@
 package io.github.nullphantom.diagnosajerawat.activity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,30 +15,28 @@ import io.github.nullphantom.diagnosajerawat.database.DatabaseAccess;
 
 public class Soal extends AppCompatActivity {
 
-    private String id;
+    private String id, prev;
     private DatabaseAccess d;
-    private TextView soal;
+    private TextView soal, judul;
+    int count=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_soal);
 
+
+
         soal = findViewById(R.id.soal);
+        judul = findViewById(R.id.judul);
 
         Intent i = getIntent();
         id = i.getStringExtra("kode_gejala");
-
+        prev = i.getStringExtra("prev");
+        count = i.getIntExtra("hitung",1);
         //kalau kesimpulan, pindah ke activity kesimpulan
         if(id.substring(0,1).equals("K")) {
-            DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
-            databaseAccess.open();
-
-            String nextSoal = databaseAccess.getData("kesimpulan",1, id);
-
-            databaseAccess.close();
             Intent in =new Intent(getApplicationContext(),Kesimpulan.class);
-            in.putExtra("kesimpulan", nextSoal);
             in.putExtra("id", id);
             startActivity(in);
         }
@@ -47,7 +46,11 @@ public class Soal extends AppCompatActivity {
         String pertanyaan = databaseAccess.getData("gejala",1, id);
         databaseAccess.close();
 
+        Typeface font = Typeface.createFromAsset(getAssets(),  "fonts/Lato-Regular.ttf");
+        soal.setTypeface(font);
         soal.setText(pertanyaan);
+
+        judul.setText("Soal "+count);
 
 
         Button ya = findViewById(R.id.btnYa);
@@ -72,9 +75,28 @@ public class Soal extends AppCompatActivity {
         databaseAccess.open();
         String nextSoal = databaseAccess.getData("keputusan",j, id);
         databaseAccess.close();
-        Log.e("soal", nextSoal);
         Intent inte =new Intent(getApplicationContext(), Soal.class);
         inte.putExtra("kode_gejala", nextSoal);
+        inte.putExtra("prev", id);
+        inte.putExtra("hitung", count+1);
         startActivity(inte);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (id.equals("G15")) {
+            Intent inte = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(inte);
+        } else {
+            DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+            databaseAccess.open();
+            String nextSoal = databaseAccess.getData("keputusan",0, prev);
+            databaseAccess.close();
+            Intent inte =new Intent(getApplicationContext(), Soal.class);
+            inte.putExtra("kode_gejala", nextSoal);
+            inte.putExtra("prev", id);
+            inte.putExtra("hitung", count-1);
+            startActivity(inte);
+        }
     }
 }

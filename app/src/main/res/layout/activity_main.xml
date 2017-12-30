@@ -12,21 +12,24 @@
         android:id="@+id/judul"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:text="Sistem Pakar Diagnosa Penyakit Jerawat"
         android:textColorHighlight="@color/colorAccent"
         android:textAlignment="center"
-        android:textSize="40sp"
+        android:textSize="45sp"
         android:textAllCaps="true"
-        android:textColor="@color/orangeText"
+        android:textColor="#ffffff"
         />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="90dp"
         android:text="mulai"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:background="@drawable/button_shape_no"
         android:onClick="mulai"/>
 
     <ImageView

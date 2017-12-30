@@ -1,6 +1,8 @@
 package io.github.nullphantom.diagnosajerawat.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,29 +25,42 @@ public class Kesimpulan extends AppCompatActivity {
         setContentView(R.layout.activity_kesimpulan);
 
         TextView simpulan = (findViewById(R.id.kesimpulan));
+        TextView judul = (findViewById(R.id.judul_kesimpulan));
 
         Intent i = getIntent();
-        String kesimpulan = i.getStringExtra("kesimpulan");
         id = i.getStringExtra("id");
 
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+        databaseAccess.open();
+
+        String kesimpulan = databaseAccess.getData("kesimpulan",1, id);
+
+        databaseAccess.close();
+
+        Typeface font = Typeface.createFromAsset(getAssets(),  "fonts/Lato-Regular.ttf");
+        judul.setTypeface(font);
+        simpulan.setTypeface(font);
         simpulan.setText(kesimpulan);
     }
     public void goHome(View v) {
         Intent inte = new Intent(getApplicationContext(),MainActivity.class);
         startActivity(inte);
     }
+    @SuppressLint("ShowToast")
     public void goDetail(View v) {
-        Log.e("sudah di detail", "iya sudah");
-        Intent inte = new Intent(getApplicationContext(),Detail.class);
-
-        Log.e("Kode kesimpulan : " , id);
-
-        inte.putExtra("id", id);
-        startActivity(inte);
+        if (id.equals("K09")) {
+            Toast.makeText(this,"Anda tidak sakit jerawat",Toast.LENGTH_SHORT).show();
+        } else {
+            Intent inte = new Intent(getApplicationContext(), Detail.class);
+            inte.putExtra("id", id);
+            startActivity(inte);
+        }
     }
 
     @Override
     public void onBackPressed() {
-        Toast.makeText(this,"Harus mulai dari awal!",Toast.LENGTH_LONG);
+        Toast.makeText(this,"Harus mulai dari awal!",Toast.LENGTH_SHORT).show();
     }
+
+
 }

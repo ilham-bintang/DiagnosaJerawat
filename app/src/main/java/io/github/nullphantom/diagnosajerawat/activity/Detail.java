@@ -1,6 +1,7 @@
 package io.github.nullphantom.diagnosajerawat.activity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,7 +20,6 @@ public class Detail extends AppCompatActivity {
 
     private ListView listView;
     String id;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +35,6 @@ public class Detail extends AppCompatActivity {
 
         Intent i = getIntent();
         id = i.getStringExtra("id");
-        Log.e("idnya adalah :" , id);
 
         final DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
@@ -44,7 +43,6 @@ public class Detail extends AppCompatActivity {
         final List<String> daftar_kode_solusi = databaseAccess.getListData("kesimpulan_solusi",1, id);
 
         List<String> daftar_solusi = databaseAccess.getListData("solusi",1, daftar_kode_solusi);
-        Log.e("kesimpulannya " , daftar_kode_solusi.get(0));
         databaseAccess.close();
 
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, daftar_solusi);
@@ -61,6 +59,8 @@ public class Detail extends AppCompatActivity {
             }
         });
 
+        Typeface font = Typeface.createFromAsset(getAssets(),  "fonts/Lato-Regular.ttf");
+        detail.setTypeface(font);
         detail.setText(detail_kesimpulan);
 
     }
@@ -71,6 +71,13 @@ public class Detail extends AppCompatActivity {
     }
     public void goHome(View v) {
         Intent inte =new Intent(getApplicationContext(),MainActivity.class);
+        startActivity(inte);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent inte =new Intent(getApplicationContext(),Kesimpulan.class);
+        inte.putExtra("id", id);
         startActivity(inte);
     }
 }
