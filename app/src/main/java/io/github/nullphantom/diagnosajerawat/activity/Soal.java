@@ -1,5 +1,6 @@
 package io.github.nullphantom.diagnosajerawat.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +20,7 @@ public class Soal extends AppCompatActivity {
     private String id, prev;
     private DatabaseAccess d;
     private TextView soal, judul;
+    private ImageView g;
     int count=1;
 
     @Override
@@ -26,7 +29,7 @@ public class Soal extends AppCompatActivity {
         setContentView(R.layout.activity_soal);
 
 
-
+        g = findViewById(R.id.gambar);
         soal = findViewById(R.id.soal);
         judul = findViewById(R.id.judul);
 
@@ -44,11 +47,14 @@ public class Soal extends AppCompatActivity {
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
         String pertanyaan = databaseAccess.getData("gejala",1, id);
+        String gambar = databaseAccess.getData("gejala",2,id);
         databaseAccess.close();
 
         Typeface font = Typeface.createFromAsset(getAssets(),  "fonts/Lato-Regular.ttf");
         soal.setTypeface(font);
         soal.setText(pertanyaan);
+
+        g.setImageResource(getImageId(this, gambar));
 
         judul.setText("Soal "+count);
 
@@ -98,5 +104,8 @@ public class Soal extends AppCompatActivity {
             inte.putExtra("hitung", count-1);
             startActivity(inte);
         }
+    }
+    public static int getImageId(Context context, String imageName) {
+        return context.getResources().getIdentifier("drawable/" + imageName, null, context.getPackageName());
     }
 }

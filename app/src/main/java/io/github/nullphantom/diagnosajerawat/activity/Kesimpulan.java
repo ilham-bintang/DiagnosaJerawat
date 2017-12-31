@@ -1,12 +1,14 @@
 package io.github.nullphantom.diagnosajerawat.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +28,7 @@ public class Kesimpulan extends AppCompatActivity {
 
         TextView simpulan = (findViewById(R.id.kesimpulan));
         TextView judul = (findViewById(R.id.judul_kesimpulan));
+        ImageView g = findViewById(R.id.gambar);
 
         Intent i = getIntent();
         id = i.getStringExtra("id");
@@ -34,11 +37,12 @@ public class Kesimpulan extends AppCompatActivity {
         databaseAccess.open();
 
         String kesimpulan = databaseAccess.getData("kesimpulan",1, id);
-
+        String gambar = databaseAccess.getData("kesimpulan",3, id);
         databaseAccess.close();
 
         Typeface font = Typeface.createFromAsset(getAssets(),  "fonts/Lato-Regular.ttf");
         judul.setTypeface(font);
+        g.setImageResource(getImageId(this, gambar));
         simpulan.setTypeface(font);
         simpulan.setText(kesimpulan);
     }
@@ -61,6 +65,8 @@ public class Kesimpulan extends AppCompatActivity {
     public void onBackPressed() {
         Toast.makeText(this,"Harus mulai dari awal!",Toast.LENGTH_SHORT).show();
     }
-
+    public static int getImageId(Context context, String imageName) {
+        return context.getResources().getIdentifier("drawable/" + imageName, null, context.getPackageName());
+    }
 
 }

@@ -10,7 +10,7 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 public class DBHelper extends SQLiteAssetHelper {
 
-    static final String DATABASE_NAME = "jerawat4.db";
+    static final String DATABASE_NAME = "jerawat5.db";
     static final int DATABASE_VERSION = 1;
 
 
