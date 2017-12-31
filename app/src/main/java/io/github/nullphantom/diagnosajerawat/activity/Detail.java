@@ -1,11 +1,13 @@
 package io.github.nullphantom.diagnosajerawat.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -45,8 +47,17 @@ public class Detail extends AppCompatActivity {
         List<String> daftar_solusi = databaseAccess.getListData("solusi",1, daftar_kode_solusi);
         databaseAccess.close();
 
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, daftar_solusi);
-        this.listView.setAdapter(adapter);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>
+                (this, android.R.layout.simple_list_item_1, daftar_solusi){
+                @Override
+                public View getView(int position, View convertView, ViewGroup parent){
+                    View view = super.getView(position, convertView, parent);
+                    TextView tv = view.findViewById(android.R.id.text1);
+                    tv.setTextColor(Color.WHITE);
+                    return view;
+                }
+        };
+        this.listView.setAdapter(arrayAdapter);
 
         this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

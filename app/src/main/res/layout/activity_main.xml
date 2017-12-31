@@ -31,7 +31,15 @@
         android:textSize="20dp"
         android:background="@drawable/button_shape_no"
         android:onClick="mulai"/>
-
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="about"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:background="@drawable/button_shape"
+        android:onClick="about"/>
     <ImageView
         android:layout_marginTop="50dp"
         android:layout_width="match_parent"

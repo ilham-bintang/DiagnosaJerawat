@@ -31,6 +31,12 @@ public class MainActivity extends AppCompatActivity {
         i.putExtra("kode_gejala","G15");
         startActivity(i);
     }
+    public void about(View v) {
+
+        Intent i =new Intent(getApplicationContext(),About.class);
+        i.putExtra("kode_gejala","G15");
+        startActivity(i);
+    }
 
     @Override
     public void onBackPressed() {
