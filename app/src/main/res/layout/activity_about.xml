@@ -20,6 +20,33 @@
     <ListView
         android:id="@+id/listView"
         android:layout_width="fill_parent"
-        android:layout_height="match_parent">
+        android:layout_height="400dp">
     </ListView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:gravity="bottom">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            >
+            <Button
+                android:id="@+id/btnTidak"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="contact us"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/button_shape_no"
+                android:onClick="kirim_email" />
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>
